@@ -1,4 +1,4 @@
-﻿@model List<CheeseMVC.Models.Cheese>
+﻿@model IList<CheeseMVC.Models.Cheese>
 
 <h1>@ViewBag.Title</h1>
 
@@ -7,7 +7,7 @@
     <tr>
         <th>Name</th>
         <th>Description</th>
-        <td>Category</td>
+        <th>Category</th>
     </tr>
 
     @foreach (var cheese in Model)

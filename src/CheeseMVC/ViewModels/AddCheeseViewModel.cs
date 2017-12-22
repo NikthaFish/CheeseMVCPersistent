@@ -1,5 +1,6 @@
 ﻿using CheeseMVC.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,13 +8,6 @@ namespace CheeseMVC.ViewModels
 {
     public class AddCheeseViewModel
     {
-        private IEnumerable<CheeseCategory> categories;
-
-        public AddCheeseViewModel(IEnumerable<CheeseCategory> categories)
-        {
-            
-        }
-
         [Required]
         [Display(Name = "Cheese Name")]
         public string Name { get; set; }
@@ -25,6 +19,23 @@ namespace CheeseMVC.ViewModels
         [Display(Name = "Category")]
         public int CategoryID { get; set; }
 
+        public AddCheeseViewModel() { }
+
         public List<SelectListItem> Categories { get; set; }
+
+        public AddCheeseViewModel(IEnumerable<CheeseCategory> categories)
+        {
+            Categories = new List<SelectListItem>();
+
+            foreach (var category in categories)
+            {
+                Categories.Add(new SelectListItem
+                {
+                    Value = category.ID.ToString(),
+                    Text = category.Name
+                });
+            }
+        }
+        
     }
 }
